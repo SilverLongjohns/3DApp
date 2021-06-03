@@ -32,13 +32,13 @@ scene.add(pointLight, ambientLight);
 
 const lightHelper = new THREE.PointLightHelper(pointLight)
 const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(lightHelper, gridHelper)
+scene.add(lightHelper)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
 function addFragment() {
   const geometry = new THREE.ConeGeometry(0.15, 2, 10);
-  const material = new THREE.MeshStandardMaterial( { color: 0xffffff } )
+  const material = new THREE.MeshStandardMaterial( { color: 0x7AC5CD } )
   const fragment = new THREE.Mesh( geometry, material )
 
   const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 100 ));
@@ -49,12 +49,13 @@ function addFragment() {
     requestAnimationFrame( animate );
     fragment.translateY(THREE.MathUtils.randFloatSpread( 50 ))
     fragment.translateX(THREE.MathUtils.randFloatSpread( 50 ))
+    fragment.translateZ(THREE.MathUtils.randFloatSpread( 50 ))
   }
   
   animate();
 }
 
-Array(1000).fill().forEach(addFragment);
+Array(5000).fill().forEach(addFragment);
 
 function animate() {
   requestAnimationFrame( animate );
